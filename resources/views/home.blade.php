@@ -2,22 +2,35 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+       <div class="row">
+           <div class="col-md-12">
+               <div class="card">
+                   <div class="card-body">
+                       @foreach($areas as $country)
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+                       <h2><a href="">{{$country->name}}</a></h2>
+
+                           <hr>
+                           <div class="row">
+                           @foreach($country->children as $state)
+                           <div class="col-md-4 py-4">
+                               <h3><a href="">{{$state->name}}</a></h3>
+                               <hr>
+                               @foreach($state->children as $city)
+                               <h5><a href="">{{$city->name}}</a></h5>
+                                @endforeach
+                           </div>
+
+                           @endforeach
+                       </div>
+
+                        @endforeach
+                   </div>
+               </div>
+
+           </div>
+
+   </div>
 </div>
 @endsection
